@@ -17,7 +17,8 @@ export const URLS = {
         },
         productionOrders: {
             getAll: () => `${API_BASE_URL}/v1/production-orders`,
-            getByOrderNumber: (orderNumber: number) => `${API_BASE_URL}/v1/production-orders/${orderNumber}`,
+            getByOrderNumber: (orderNumber: number) =>
+                `${API_BASE_URL}/v1/production-orders/${orderNumber}`,
             refresh: () => `${API_BASE_URL}/v1/production-orders/refresh`
         },
         operators: {
@@ -36,6 +37,13 @@ export const URLS = {
                 `${API_BASE_URL}/v1/reports/update-quantity/${reportId}`,
             getByLotNumber: (lotNumber: string) =>
                 `${API_BASE_URL}/v1/reports/by-lot-number/${lotNumber}`
+        },
+        repository: {
+            search: () => `${API_BASE_URL}/repository`,
+            getById: (id: number) => `${API_BASE_URL}/repository/${id}`,
+            create: () => `${API_BASE_URL}/repository`,
+            update: (id: number) => `${API_BASE_URL}/repository/${id}`,
+            delete: (id: number) => `${API_BASE_URL}/repository/${id}`
         }
     },
     scale: {

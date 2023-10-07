@@ -1,7 +1,6 @@
 import { IconButton, InputBase, Paper } from '@mui/material';
 import './index.scss';
 import { Search as IconSearch } from '@mui/icons-material';
-import AppCard from '../../../../components/AppCard';
 
 export default function Search() {
     return (

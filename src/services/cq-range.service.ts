@@ -1,5 +1,5 @@
 import { CqRange } from '../models/api/cq-range';
-import { CqRangeUpdateDto } from '../models/dtos/cq-range-update.dto';
+import { CqRangeUpdateDto } from '../models/filters/cq-range-update.dto';
 import { http } from './config/http';
 import { URLS } from './config/urls';
 

@@ -3,7 +3,7 @@ import { useLoader } from '../../../contexts/LoaderContext';
 import { useToast } from '../../../contexts/ToastContext';
 import { createCqRangeService } from '../../../services/cq-range.service';
 import { CqRange } from '../../../models/api/cq-range';
-import { CqRangeUpdateDto } from '../../../models/dtos/cq-range-update.dto';
+import { CqRangeUpdateDto } from '../../../models/filters/cq-range-update.dto';
 
 type FormValueType = [number | undefined, number | undefined];
 

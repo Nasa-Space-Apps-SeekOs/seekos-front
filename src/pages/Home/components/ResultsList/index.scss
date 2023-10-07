@@ -1,0 +1,12 @@
+@import "../../../../styles/colors.scss";
+
+#home-search {
+    .input-search {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background: $color-neutral-0;
+        border-radius: 24px;
+        padding: 8px;
+    }
+}
