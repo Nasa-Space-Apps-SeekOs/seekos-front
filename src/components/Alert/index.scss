@@ -1,0 +1,12 @@
+.alert {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 20px 0 12px;
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+}

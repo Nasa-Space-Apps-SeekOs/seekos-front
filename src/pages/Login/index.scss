@@ -1,0 +1,43 @@
+#login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    .card {
+        padding: 32px;
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            align-items: center;
+            padding: 0;
+
+            .logo {
+                width: 120px;
+                height: 84px;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+
+        .card-actions {
+            padding: 16px 0;
+
+            .btn-login {
+                width: 100%;
+            }
+        }
+    }
+}

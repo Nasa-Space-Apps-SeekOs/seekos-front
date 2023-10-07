@@ -1,0 +1,21 @@
+#form-orders {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+
+    .actions {
+        display: flex;
+        gap: 12px;
+    }
+
+    .filters {
+        display: flex;
+        gap: 12px;
+
+        &-item {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,39 @@
+#report-pulp-manual-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .row {
+        display: flex;
+        gap: 8px;
+
+        .MuiFormControl-root {
+            width: 100%;
+        }
+
+        &.actions {
+            justify-content: flex-end;
+        }
+    }
+
+    .field-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        label {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .field {
+            .MuiInputBase-root {
+                height: 100%;
+            }
+
+            input {
+                font-size: 1.3rem;
+            }
+        }
+    }
+}

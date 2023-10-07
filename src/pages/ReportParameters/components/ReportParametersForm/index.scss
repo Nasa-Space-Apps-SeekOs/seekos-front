@@ -1,0 +1,18 @@
+#report-parameters-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .row {
+        display: flex;
+        gap: 8px;
+
+        .MuiFormControl-root {
+            width: 100%;
+        }
+
+        &.actions {
+            justify-content: flex-end;
+        }
+    }
+}

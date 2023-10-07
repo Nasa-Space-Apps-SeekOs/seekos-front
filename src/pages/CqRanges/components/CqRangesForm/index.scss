@@ -1,0 +1,20 @@
+#cq-ranges-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .form-fields {
+        flex-wrap: wrap;
+        display: flex;
+        gap: 38px;
+
+        .form-field-item {
+            width: calc((100% / 6) - 32px);
+        }
+    }
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+    }
+}

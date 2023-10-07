@@ -1,0 +1,104 @@
+@import '../../../../styles/colors.scss';
+
+#report-actions {
+    height: 360px;
+
+    .row {
+        display: flex;
+        gap: 10px;
+        height: 100%;
+
+        .col {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .indicator {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border-radius: 6px;
+                padding: 10px;
+                font-weight: bold;
+                height: 100%;
+                position: relative;
+                border-width: 1px;
+                border-style: solid;
+
+                label {
+                    position: absolute;
+                    top: 10px;
+                    left: 12px;
+                }
+
+                span {
+                    font-size: 4rem;
+                }
+            }
+
+            .action-button {
+                border: 0;
+                width: 100%;
+                padding: 6px;
+                font-size: 1.3rem;
+                border-radius: 6px;
+                height: 100%;
+                font-weight: bold;
+                border-width: 1px;
+                border-style: solid;
+                -webkit-box-shadow: 4px 4px 5px -3px rgba(0, 0, 0, 0.75);
+                -moz-box-shadow: 4px 4px 5px -3px rgba(0, 0, 0, 0.75);
+                box-shadow: 4px 4px 5px -3px rgba(0, 0, 0, 0.75);
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+
+                &:active {
+                    -webkit-box-shadow: inset 4px 4px 5px -3px rgba(0, 0, 0, 0.75);
+                    -moz-box-shadow: inset 4px 4px 5px -3px rgba(0, 0, 0, 0.75);
+                    box-shadow: inset 4px 4px 5px -3px rgba(0, 0, 0, 0.75);
+                }
+
+                &.active {
+                    -webkit-box-shadow: inset 4px 4px 5px -3px rgba(0, 0, 0, 0.75);
+                    -moz-box-shadow: inset 4px 4px 5px -3px rgba(0, 0, 0, 0.75);
+                    box-shadow: inset 4px 4px 5px -3px rgba(0, 0, 0, 0.75);
+                }
+
+                &:disabled {
+                    background: $color-neutral-4 !important;
+                    color: $color-neutral-10 !important;
+                    cursor: not-allowed !important;
+                    box-shadow: none !important;
+                }
+            }
+        }
+    }
+
+    .col-param-type {
+        width: 50% !important;
+
+        .indicator {
+            span {
+                font-size: 10rem !important;
+            }
+        }
+    }
+
+    .row-param-observation {
+        height: 44px;
+        margin: 8px 0;
+
+        .col {
+            .indicator {
+                span {
+                    font-size: 2rem;
+                }
+            }
+        }
+    }
+}

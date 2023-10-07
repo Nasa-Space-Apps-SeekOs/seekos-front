@@ -1,0 +1,27 @@
+#prompt-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        label {
+            font-weight: bold;
+        }
+    }
+
+    .actions {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+    }
+}
+
+.prompt-modal {
+    .modal-content {
+        margin-top: 0 !important;
+    }
+}

@@ -1,0 +1,46 @@
+@import "../../../../styles/colors.scss";
+
+#report-header {
+    display: flex;
+    gap: 1.5rem;
+
+    .header-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px;
+        border-radius: 6px;
+        color: $color-neutral-0;
+
+        label {
+            font-size: 1rem;
+        }
+
+        span {
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+    }
+
+    .field-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        label {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .field {
+            .MuiInputBase-root {
+                height: 100%;
+            }
+
+            input {
+                font-size: 1.3rem;
+            }
+        }
+    }
+}
