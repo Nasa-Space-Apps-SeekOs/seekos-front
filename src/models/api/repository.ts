@@ -1,14 +1,5 @@
-export enum RepositoryType {
-    project = 'project',
-    idea = 'idea'
-}
-
-export enum RepositoryPhase {
-    init = 'init',
-    development = 'development',
-    test = 'test',
-    concluded = 'concluded'
-}
+import { RepositoryPhase } from '../enums/repository-phase';
+import { RepositoryType } from '../enums/repository-type';
 
 export interface Repository {
     id: number;
@@ -16,6 +7,7 @@ export interface Repository {
     name: string;
     resume: string;
     body: string;
+    likes: number;
     ranking: number;
     phases: RepositoryPhase;
 }
