@@ -5,6 +5,7 @@ import Search from './components/Search';
 import HomeProvider from './contexts/HomeContext';
 import './index.scss';
 import Filters from './components/Filters';
+import ResultsList from './components/ResultsList';
 
 export default function Home() {
     return (
@@ -17,7 +18,10 @@ export default function Home() {
                             <Filters />
                         </Col>
                         <Col md={9}>
-                            <Search />
+                            <div className="home-search-results">
+                                <Search />
+                                <ResultsList />
+                            </div>
                         </Col>
                     </Row>
                 </div>

@@ -7,7 +7,12 @@ export const theme = createTheme({
             main: colors['color-primary']
         },
         secondary: {
-            main: colors['color-secondary']
+            main: colors['color-secondary'],
+            contrastText: colors['color-white']
+        },
+        info: {
+            main: colors['color-highlight'],
+            contrastText: colors['color-white']
         }
     }
 });

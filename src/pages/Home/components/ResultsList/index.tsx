@@ -1,11 +1,17 @@
-import { IconButton, InputBase, Paper } from '@mui/material';
 import './index.scss';
-import { Search as IconSearch } from '@mui/icons-material';
+import { useHomeContext } from '../../contexts/HomeContext';
+import ResultRepository from './components/ResultRepository';
 
 export default function ResultsList() {
+    const { repositories } = useHomeContext();
+
     return (
         <div id="home-results-list">
-            
+            <div className="cards">
+                {repositories.map((r) => (
+                    <ResultRepository repository={r} />
+                ))}
+            </div>
         </div>
     );
 }

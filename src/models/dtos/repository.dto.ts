@@ -1,4 +1,5 @@
-import { RepositoryPhase, RepositoryType } from "../api/repository";
+import { RepositoryPhase } from "../enums/repository-phase";
+import { RepositoryType } from "../enums/repository-type";
 
 export interface RepositoryDto {
     id?: number;
