@@ -4,6 +4,14 @@ import { RepositoryFilter } from '../models/filters/repository-search.filter';
 import { http } from './config/http';
 import { URLS } from './config/urls';
 
+
+export interface RepositoryService {
+    search(filter: RepositoryFilter): Promise<Repository[]>;
+    getById(id: number): Promise<Repository>;
+    update(id: number, dto: RepositoryDto): Promise<Repository[]>;
+    create(dto: RepositoryDto): Promise<Repository[]>;
+}
+
 export const createRepositoryService = () => {
     const search = (filter: RepositoryFilter): Promise<Repository[]> => {
         return new Promise((resolve) => resolve(mockRepository));
