@@ -13,10 +13,10 @@ export default function Home() {
                 <div id="page-home">
                     <Header />
                     <Row>
-                        <Col>
+                        <Col md={3}>
                             <Filters />
                         </Col>
-                        <Col>
+                        <Col md={9}>
                             <Search />
                         </Col>
                     </Row>
