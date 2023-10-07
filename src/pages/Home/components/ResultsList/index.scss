@@ -1,0 +1,9 @@
+@import "../../../../styles/colors.scss";
+
+#home-results-list {
+    .cards {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+}
