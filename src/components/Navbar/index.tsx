@@ -19,19 +19,18 @@ const Navbar = () => {
     const [currentRoute, setCurrentRoute] = useState(location.pathname);
 
     const buttons = [
-        auth.hasPermission([UserPermission.PULP_REPORT]) && {
-            path: '/pulp-report',
-            label: 'Reporte de Polpa'
+        {
+            path: '/home',
+            label: 'Home'
         },
-        auth.hasPermission([UserPermission.PULP_REPORT_MANUAL]) && {
-            path: '/pulp-report-manual',
-            label: 'Reporte Manual'
+        {
+            path: '/home',
+            label: 'Page 1'
         },
-        auth.hasPermission([UserPermission.REPORT_PARAMETERS]) && {
-            path: '/report-parameters',
-            label: 'Parâmetros de Reporte'
-        },
-        auth.hasPermission([UserPermission.CQ_RANGES]) && { path: '/cq-ranges', label: 'Faixas CQ' }
+        {
+            path: '/home',
+            label: 'Page 2'
+        }
     ];
 
     useEffect(() => {
@@ -52,7 +51,7 @@ const Navbar = () => {
     return canShow ? (
         <div id="navbar">
             <nav>
-                <span className="nav-title">Reporte de Polpa</span>
+                <span className="nav-title">SeekOs</span>
 
                 <div className="content">
                     <div className="buttons">
