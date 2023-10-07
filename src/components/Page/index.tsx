@@ -1,7 +1,7 @@
 import './index.scss';
 
 interface PageProps {
-    children: JSX.Element;
+    children: any;
     title?: string;
 }
 
