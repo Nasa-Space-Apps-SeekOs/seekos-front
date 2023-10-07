@@ -8,8 +8,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "prettier:write-all": "npx prettier --write .",
-        "install": "npm install --legacy-peer-deps"
+        "prettier:write-all": "npx prettier --write ."
     },
     "dependencies": {
         "@emotion/react": "^11.10.5",
