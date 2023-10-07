@@ -1,7 +1,8 @@
-import { BrowserRouter, Navigate, Route, Routes as BrowserRoutes } from 'react-router-dom';
+import { BrowserRouter, Routes as BrowserRoutes, Navigate, Route } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import PublicRoute from './PublicRoute';
 import Home from '../pages/Home';
+import RepositoryDetail from '../pages/RepositoryDetail';
+import PublicRoute from './PublicRoute';
 
 const Routes = () => {
     return (
@@ -31,6 +32,14 @@ const Routes = () => {
                     element={
                         <PublicRoute>
                             <Home />
+                        </PublicRoute>
+                    }
+                />
+                <Route
+                    path="/repository/:id"
+                    element={
+                        <PublicRoute>
+                            <RepositoryDetail/>
                         </PublicRoute>
                     }
                 />
