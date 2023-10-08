@@ -75,7 +75,7 @@ export default function RepositoryDetail() {
                                         🚀{repository.likes}
                                 </div>
                                 <div className="minorInfo">
-                                    <b>Status:</b> {repository.phases}
+                                    <b>Status:</b> {repository.status}
                                 </div>
                                 <div className="minorInfo">
                                     <b>Type</b>: {repository.type}
