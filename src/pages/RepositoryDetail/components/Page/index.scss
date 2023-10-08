@@ -1,0 +1,29 @@
+@import "../../../../styles/colors.scss";
+
+
+
+#page {
+    padding: 3.375rem 0rem;
+    width: 100%;
+    justify-content: space-between !important;
+
+    .side-menu{
+        align-items: center;
+        gap: 1rem;
+        align-self: flex-start;
+        width: 100% !important;
+        height: 100% !important;
+        background-color: $color-primary;
+
+        @media (min-width: 48em) {
+            width: 100% !important;
+            height: 100% !important;
+            min-height: 100vh!important;
+        }
+    }
+    .container {
+        margin-top: 1rem;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+}
