@@ -29,7 +29,7 @@ export const createRepositoryService = () => {
 
     const getCommets = (id: number): Promise<RepositoryComment[]> => {
         return http()
-            .get<any>(URLS.api.repositories.getCommets(id))
+            .get<any>(URLS.api.repositories.getComments(id))
             .then((response) => response.data);
     }
 

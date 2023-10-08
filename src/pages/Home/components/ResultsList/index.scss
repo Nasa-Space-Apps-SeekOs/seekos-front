@@ -2,8 +2,8 @@
 
 #home-results-list {
     .cards {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
+        .repository-item {
+            margin-bottom: 24px;
+        }
     }
 }
