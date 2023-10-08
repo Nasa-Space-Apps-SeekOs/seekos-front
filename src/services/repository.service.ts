@@ -1,6 +1,7 @@
 import { http } from '../core/http/http';
 import { URLS } from '../core/http/urls';
 import { Repository } from '../models/api/repository';
+import { RepositoryColaborator } from '../models/api/repository-colaborator';
 import { RepositoryComment } from '../models/api/repository-comment';
 import { RepositoryDto } from '../models/dtos/repository.dto';
 import { RepositoryFilter } from '../models/filters/repository-search.filter';
@@ -11,6 +12,7 @@ export interface RepositoryService {
     update(id: number, dto: RepositoryDto): Promise<Repository>;
     create(dto: RepositoryDto): Promise<Repository>;
     getCommets(id: number): Promise<RepositoryComment[]>;
+    getMembers: (id: number) => Promise<RepositoryColaborator[]>;
 }
 
 export const createRepositoryService = () => {
@@ -34,6 +36,12 @@ export const createRepositoryService = () => {
             .then((response) => response.data);
     }
 
+    const getMembers = (id: number): Promise<RepositoryComment[]> => {
+        return http()
+            .get<any>(URLS.api.repositories.getMembers(id))
+            .then((response) => response.data);
+    }
+
     const update = (id: number, dto: RepositoryDto): Promise<Repository> => {
         return http()
             .put<any>(URLS.api.repositories.update(id), dto)
@@ -51,6 +59,7 @@ export const createRepositoryService = () => {
         getById,
         update,
         create,
-        getCommets
+        getCommets,
+        getMembers
     };
 };

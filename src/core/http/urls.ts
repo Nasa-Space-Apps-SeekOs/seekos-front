@@ -13,7 +13,8 @@ export const URLS = {
             create: () => `${API_BASE_URL}/repositories/`,
             update: (id: number) => `${API_BASE_URL}/repositories/${id}/`,
             delete: (id: number) => `${API_BASE_URL}/repositories/${id}/`,
-            getComments: (id: number) => `${API_BASE_URL}/repositories/${id}/comments/`
+            getComments: (id: number) => `${API_BASE_URL}/repositories/${id}/comments/`,
+            getMembers: (id: number) => `${API_BASE_URL}/repositories/${id}/members/`
         },
         keys: {
             getAll: () => `${API_BASE_URL}/keys/`

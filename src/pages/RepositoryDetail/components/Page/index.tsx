@@ -1,4 +1,4 @@
-import { Col, Row } from 'react-grid-system';
+import { Row } from 'react-grid-system';
 import './index.scss';
 
 interface PageProps {
@@ -10,12 +10,12 @@ interface PageProps {
 const Page = (props: PageProps) => {
     return (
         <Row id="repositor-detail-page">
-            <Col md={3} className='side-menu'>
+            <div className='side-menu'>
                 {props.sideMenu}
-            </Col>
-            <Col md={9} className='container'>
+            </div>
+            <div className='container'>
                 <div className="page-content">{props.children}</div>
-            </Col>
+            </div>
         </Row>
     );
 };
