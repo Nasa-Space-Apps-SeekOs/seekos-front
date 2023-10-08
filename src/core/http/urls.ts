@@ -8,11 +8,11 @@ export const URLS = {
             login: () => `${API_BASE_URL}/v1/auth/login`
         },
         repositories: {
-            search: () => `${API_BASE_URL}/repositories`,
-            getById: (id: number) => `${API_BASE_URL}/repositories/${id}`,
-            create: () => `${API_BASE_URL}/repositories`,
-            update: (id: number) => `${API_BASE_URL}/repositories/${id}`,
-            delete: (id: number) => `${API_BASE_URL}/repositories/${id}`
+            search: () => `${API_BASE_URL}/repositories/`,
+            getById: (id: number) => `${API_BASE_URL}/repositories/${id}/`,
+            create: () => `${API_BASE_URL}/repositories/`,
+            update: (id: number) => `${API_BASE_URL}/repositories/${id}/`,
+            delete: (id: number) => `${API_BASE_URL}/repositories/${id}/`
         }
     }
 };
