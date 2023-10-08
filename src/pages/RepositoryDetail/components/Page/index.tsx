@@ -9,7 +9,7 @@ interface PageProps {
 
 const Page = (props: PageProps) => {
     return (
-        <Row id="page">
+        <Row id="repositor-detail-page">
             <Col md={4} className='side-menu'>
                 {props.sideMenu}
             </Col>

@@ -8,7 +8,10 @@ import {
 import colors from '../../../../../../styles/colors.scss';
 import './index.scss';
 import { Link } from 'react-router-dom';
-import { RepositoryStatusColors, RepositoryStatusLabels } from '../../../../../../models/enums/repository-status';
+import {
+    RepositoryStatusColors,
+    RepositoryStatusLabels
+} from '../../../../../../models/enums/repository-status';
 
 interface ResultRepositoryProps {
     repository: Repository;
@@ -26,7 +29,10 @@ export default function ResultRepository({ repository }: ResultRepositoryProps) 
     const statusChip = (
         <Chip
             label={RepositoryStatusLabels[status]}
-            style={{ color: colors['color-white'], backgroundColor: RepositoryStatusColors[status] }}
+            style={{
+                color: colors['color-white'],
+                backgroundColor: RepositoryStatusColors[status]
+            }}
         />
     );
 
@@ -48,9 +54,8 @@ export default function ResultRepository({ repository }: ResultRepositoryProps) 
 
                 <div className="item__footer">
                     <div className="item__footer__status">{statusChip}</div>
-                    <Link to={`/repository/${id}`}>
+                    <Link to={`/repository/${id}`} className="item__footer__view-more">
                         <Button
-                            className="item__footer__view-more"
                             color="secondary"
                             variant="contained"
                         >

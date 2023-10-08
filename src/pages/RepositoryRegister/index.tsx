@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Page from '../../components/Page';
 import './index.scss';
 import {
     RepositoryType,
@@ -28,6 +27,7 @@ import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import AppCard from '../../components/AppCard';
+import Page from '../../components/Page';
 
 interface FormType {
     type: RepositoryType;

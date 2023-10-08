@@ -43,7 +43,9 @@ const Navbar = () => {
     return canShow ? (
         <div id="navbar">
             <nav>
-                <span className="nav-title">SeekOs</span>
+                <Link to="/" className="nav-title">
+                    SeekOs
+                </Link>
 
                 <div className="content">
                     <div className="buttons">
