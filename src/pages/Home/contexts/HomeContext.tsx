@@ -58,11 +58,7 @@ const HomeProvider = (props: HomeProviderProps) => {
     const repositoryTypes = RepositoryTypeList();
     const repositoryStatus = RepositoryStatusList();
 
-    const [filterForm, setFilterForm] = useState<FilterFormType>({
-        type: 'All',
-        status: 'All',
-        tag: 'All',
-    });
+    const [filterForm, setFilterForm] = useState<FilterFormType>({});
 
     useEffect(() => {
         getKeys();
