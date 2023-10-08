@@ -1,7 +1,7 @@
-import { Box, Tab, Tabs } from '@mui/material';
+import { Box, IconButton, Tab, Tabs } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Row } from 'react-grid-system';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import AppCard from '../../components/AppCard';
 import { useLoader } from '../../contexts/LoaderContext';
 import { Repository } from '../../models/api/repository';
@@ -15,6 +15,16 @@ import InnerContent from './components/InnerContent';
 import Page from './components/Page/index';
 import { CustomTabPanel, TabsValue, getTabProps } from './components/TabsUtils';
 import './index.scss';
+<<<<<<< Updated upstream
+=======
+import { RepositoryComment } from '../../models/api/repository-comment';
+import { Edit as IconEdit } from '@mui/icons-material';
+import {
+    RepositoryStatusColors,
+    RepositoryStatusLabels
+} from '../../models/enums/repository-status';
+import { RepositoryTypeColors, RepositoryTypeLabels } from '../../models/enums/repository-type';
+>>>>>>> Stashed changes
 
 export default function RepositoryDetail() {
     const loader = useLoader();
@@ -92,7 +102,13 @@ export default function RepositoryDetail() {
                 }
             >
                 <Box sx={{ width: '100%' }}>
-                    <AppCard className="app-card">
+                    <AppCard>
+                        <Link className="button-edit-link" to={`/repository-edit/${id}`}>
+                            <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                                <IconEdit />
+                            </IconButton>
+                        </Link>
+
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                             <Tabs value={tabValue} onChange={handleChange}>
                                 <Tab
@@ -118,10 +134,32 @@ export default function RepositoryDetail() {
                                 <InnerContent title={'Resume'} content={repository.resume} />
                                 <div className="minorInfo">🚀{repository.likes}</div>
                                 <div className="minorInfo">
-                                    <b>Status:</b> {repository.status}
+                                    <div>Status</div>
+                                    {repository.status && (
+                                        <div>
+                                            <b
+                                                style={{
+                                                    color: RepositoryStatusColors[repository.status]
+                                                }}
+                                            >
+                                                {RepositoryStatusLabels[repository.status]}
+                                            </b>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="minorInfo">
-                                    <b>Type</b>: {repository.type}
+                                    <div>Type</div>
+                                    {repository.type && (
+                                        <div>
+                                            <b
+                                                style={{
+                                                    color: RepositoryTypeColors[repository.type]
+                                                }}
+                                            >
+                                                {RepositoryTypeLabels[repository.type]}
+                                            </b>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="info-body">
                                     <div>

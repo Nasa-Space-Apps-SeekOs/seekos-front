@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './index.scss';
 import {
     RepositoryType,
@@ -22,13 +22,15 @@ import {
 import { createRepositoryService } from '../../services/repository.service';
 import { useLoader } from '../../contexts/LoaderContext';
 import { useToast } from '../../contexts/ToastContext';
-import { useNavigate } from 'react-router-dom';
-import { EditorState, convertToRaw } from 'draft-js';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { ContentState, EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import AppCard from '../../components/AppCard';
 import Page from '../../components/Page';
 import draftToHtml from 'draftjs-to-html';
+import { Repository } from '../../models/api/repository';
+import { RepositoryDto } from '../../models/dtos/repository.dto';
 
 interface FormType {
     type: RepositoryType;
@@ -38,11 +40,15 @@ interface FormType {
     status?: RepositoryStatus;
 }
 
-const RepositoryRegister = () => {
+const RepositoryEdit = () => {
     const loader = useLoader();
     const toast = useToast();
     const repositoryService = createRepositoryService();
     const navigate = useNavigate();
+
+    const [repository, setRepository] = useState<Repository>();
+
+    const { id } = useParams<{ id: string }>();
 
     const [form, setForm] = useState<FormType>({
         type: RepositoryType.idea,
@@ -57,6 +63,42 @@ const RepositoryRegister = () => {
     const statusList = RepositoryStatusList();
 
     const isProject = form.type === RepositoryType.project;
+
+    useEffect(() => {
+        if (id) getRepository();
+    }, []);
+
+    useEffect(() => {
+        if (repository) setFormValues();
+    }, [repository]);
+
+    const setFormValues = () => {
+        if (repository) {
+            const { name, type, status, resume, body: bodyStr, url_image } = repository;
+
+            setForm({
+                name,
+                type,
+                status,
+                resume,
+                url_image
+            });
+
+            setBody(EditorState.createWithContent(ContentState.createFromText(bodyStr)));
+        }
+    };
+
+    const getRepository = () => {
+        loader.show();
+        repositoryService
+            .getById(Number(id))
+            .then((response) => setRepository(response))
+            .catch(() => {
+                toast.show('Error loading repository');
+                navigate(-1);
+            })
+            .finally(() => loader.hide());
+    };
 
     const setFormField = (field: keyof FormType, value: FormType[keyof FormType]) => {
         setForm((prevForm) => ({
@@ -84,15 +126,21 @@ const RepositoryRegister = () => {
     const save = () => {
         if (!formIsValid()) return;
 
+        const dto: RepositoryDto = {
+            id: id ? Number(id) : undefined,
+            type: form.type,
+            name: form.name,
+            resume: form.resume,
+            body: draftToHtml(convertToRaw(body.getCurrentContent())),
+            status: form.status
+        };
+
+        const savePromise = id
+            ? repositoryService.update(Number(id), dto)
+            : repositoryService.create(dto);
+
         loader.show();
-        repositoryService
-            .create({
-                type: form.type,
-                name: form.name,
-                resume: form.resume,
-                body: draftToHtml(convertToRaw(body.getCurrentContent())),
-                status: form.status
-            })
+        savePromise
             .then((response) => {
                 toast.show('Repository created!', 'success');
                 navigate(`/repository/${response.id}`);
@@ -103,9 +151,12 @@ const RepositoryRegister = () => {
             .finally(() => loader.hide());
     };
 
+    const titleText = id ? 'Edit Repository' : 'New Repository';
+    const buttonSaveText = id ? 'Save' : 'Create';
+
     return (
-        <div id="page-repository-register">
-            <Page title="New Repository">
+        <div id="page-repository-edit">
+            <Page title={titleText}>
                 <form>
                     <AppCard>
                         <FormControl>
@@ -150,6 +201,8 @@ const RepositoryRegister = () => {
                             onChange={(e) => setFormField('url_image', e.target.value)}
                         />
 
+                        {form.url_image && <img className='form-image-preview' src={form.url_image} />}
+
                         {isProject && (
                             <FormControl>
                                 <FormLabel id="form-status-label">Project Status</FormLabel>
@@ -182,7 +235,7 @@ const RepositoryRegister = () => {
 
                     <AppCard>
                         <Button onClick={save} color="primary" variant="contained">
-                            Create
+                            {buttonSaveText}
                         </Button>
                     </AppCard>
                 </form>
@@ -191,4 +244,4 @@ const RepositoryRegister = () => {
     );
 };
 
-export default RepositoryRegister;
+export default RepositoryEdit;

@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Home from '../pages/Home';
 import RepositoryDetail from '../pages/RepositoryDetail';
 import PublicRoute from './PublicRoute';
-import RepositoryRegister from '../pages/RepositoryRegister';
+import RepositoryEdit from '../pages/RepositoryEdit';
 
 const Routes = () => {
     return (
@@ -50,7 +50,16 @@ const Routes = () => {
                     path="/repository-register"
                     element={
                         <PublicRoute>
-                            <RepositoryRegister />
+                            <RepositoryEdit />
+                        </PublicRoute>
+                    }
+                />
+
+                <Route
+                    path="/repository-edit/:id"
+                    element={
+                        <PublicRoute>
+                            <RepositoryEdit />
                         </PublicRoute>
                     }
                 />
