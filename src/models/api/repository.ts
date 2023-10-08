@@ -9,14 +9,7 @@ export interface Repository {
     body: string;
     likes: number;
     ranking: number;
-    status: RepositoryStatus;
-}
-export interface RepositoryComment {
-    id: number;
-    title: string;
-    comment: string;
-    created_at: string;
-    updated_at: string;
-    repository: string;
-    user: number;
+    status: RepositoryStatus | undefined;
+    url_image: string | undefined;
+    url_project: string | undefined;
 }

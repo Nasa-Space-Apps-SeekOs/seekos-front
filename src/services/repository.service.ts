@@ -1,6 +1,7 @@
 import { http } from '../core/http/http';
 import { URLS } from '../core/http/urls';
-import { Repository, RepositoryComment } from '../models/api/repository';
+import { Repository } from '../models/api/repository';
+import { RepositoryComment } from '../models/api/repository-comment';
 import { RepositoryDto } from '../models/dtos/repository.dto';
 import { RepositoryFilter } from '../models/filters/repository-search.filter';
 

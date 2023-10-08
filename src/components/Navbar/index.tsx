@@ -40,11 +40,14 @@ const Navbar = () => {
 
     const buttonsToShow = buttons.filter(Boolean) as { path: string; label: string }[];
 
+    const logo = require('../../assets/logo-seekos.png');
+
     return canShow ? (
         <div id="navbar">
             <nav>
                 <Link to="/" className="nav-title">
-                    SeekOs
+                    <img src={logo} alt="Logo" />
+                    <span>SeekOs</span>
                 </Link>
 
                 <div className="content">

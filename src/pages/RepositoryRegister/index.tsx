@@ -23,16 +23,18 @@ import { createRepositoryService } from '../../services/repository.service';
 import { useLoader } from '../../contexts/LoaderContext';
 import { useToast } from '../../contexts/ToastContext';
 import { useNavigate } from 'react-router-dom';
-import { EditorState } from 'draft-js';
+import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import AppCard from '../../components/AppCard';
 import Page from '../../components/Page';
+import draftToHtml from 'draftjs-to-html';
 
 interface FormType {
     type: RepositoryType;
     name: string;
     resume: string;
+    url_image?: string;
     status?: RepositoryStatus;
 }
 
@@ -54,6 +56,8 @@ const RepositoryRegister = () => {
 
     const statusList = RepositoryStatusList();
 
+    const isProject = form.type === RepositoryType.project;
+
     const setFormField = (field: keyof FormType, value: FormType[keyof FormType]) => {
         setForm((prevForm) => ({
             ...prevForm,
@@ -67,6 +71,7 @@ const RepositoryRegister = () => {
         if (!form.type) errors.push('Type is required');
         if (!form.name) errors.push('Name is required');
         if (!form.resume) errors.push('Resume is required');
+        if (isProject && !form.status) errors.push('Status is required');
         if (!body) errors.push('Body is required');
 
         if (!errors.length) return true;
@@ -85,7 +90,7 @@ const RepositoryRegister = () => {
                 type: form.type,
                 name: form.name,
                 resume: form.resume,
-                body: form.resume,
+                body: draftToHtml(convertToRaw(body.getCurrentContent())),
                 status: form.status
             })
             .then((response) => {
@@ -123,7 +128,7 @@ const RepositoryRegister = () => {
                         </FormControl>
 
                         <TextField
-                            id="form-named"
+                            id="form-name"
                             label="Repository name"
                             value={form.name}
                             onChange={(e) => setFormField('name', e.target.value)}
@@ -138,28 +143,41 @@ const RepositoryRegister = () => {
                             onChange={(e) => setFormField('resume', e.target.value)}
                         />
 
-                        <FormControl>
-                            <FormLabel id="form-status-label">Status</FormLabel>
-                            <RadioGroup
-                                row
-                                aria-labelledby="form-status-label"
-                                value={form.status}
-                                onChange={(e) => setFormField('status', e.target.value)}
-                            >
-                                {statusList.map((s, i) => (
-                                    <FormControlLabel
-                                        key={i}
-                                        value={s}
-                                        control={<Radio />}
-                                        label={RepositoryStatusLabels[s]}
-                                    />
-                                ))}
-                            </RadioGroup>
-                        </FormControl>
+                        <TextField
+                            id="form-image"
+                            label="Image URL (Optional)"
+                            value={form.url_image}
+                            onChange={(e) => setFormField('url_image', e.target.value)}
+                        />
+
+                        {isProject && (
+                            <FormControl>
+                                <FormLabel id="form-status-label">Project Status</FormLabel>
+                                <RadioGroup
+                                    row
+                                    aria-labelledby="form-status-label"
+                                    value={form.status}
+                                    onChange={(e) => setFormField('status', e.target.value)}
+                                >
+                                    {statusList.map((s, i) => (
+                                        <FormControlLabel
+                                            key={i}
+                                            value={s}
+                                            control={<Radio />}
+                                            label={RepositoryStatusLabels[s]}
+                                        />
+                                    ))}
+                                </RadioGroup>
+                            </FormControl>
+                        )}
                     </AppCard>
 
                     <AppCard>
-                        <Editor wrapperClassName='body-editor-wrapper' editorState={body} onEditorStateChange={setBody} />
+                        <Editor
+                            wrapperClassName="body-editor-wrapper"
+                            editorState={body}
+                            onEditorStateChange={setBody}
+                        />
                     </AppCard>
 
                     <AppCard>

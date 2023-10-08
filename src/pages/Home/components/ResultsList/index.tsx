@@ -10,7 +10,7 @@ export default function ResultsList() {
         <div id="home-results-list">
             <Row className="cards">
                 {repositories.map((r, i) => (
-                    <Col className='repository-item' lg={6}>
+                    <Col className='repository-item' sm={12}>
                         <ResultRepository key={i} repository={r} />
                     </Col>
                 ))}

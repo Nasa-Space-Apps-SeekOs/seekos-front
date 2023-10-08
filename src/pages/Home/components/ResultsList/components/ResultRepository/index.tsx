@@ -12,13 +12,14 @@ import {
     RepositoryStatusColors,
     RepositoryStatusLabels
 } from '../../../../../../models/enums/repository-status';
+import { Col, Row } from 'react-grid-system';
 
 interface ResultRepositoryProps {
     repository: Repository;
 }
 
 export default function ResultRepository({ repository }: ResultRepositoryProps) {
-    const { name, resume, type, likes, status, id } = repository;
+    const { name, resume, type, likes, status, id, url_image } = repository;
 
     const typeFormatted = (
         <span style={{ color: RepositoryTypeColors[type], fontWeight: 'bold' }}>
@@ -26,7 +27,7 @@ export default function ResultRepository({ repository }: ResultRepositoryProps) 
         </span>
     );
 
-    const statusChip = (
+    const statusChip = status ? (
         <Chip
             label={RepositoryStatusLabels[status]}
             style={{
@@ -34,35 +35,46 @@ export default function ResultRepository({ repository }: ResultRepositoryProps) 
                 backgroundColor: RepositoryStatusColors[status]
             }}
         />
+    ) : (
+        <div></div>
     );
+
+    const image = url_image || require('../../../../../../assets/repository-default.jpg');
 
     return (
         <div className="result-repository">
             <AppCard className="item">
-                <div className="item__header">
-                    <div className="item__header__type">{typeFormatted}</div>
-                    <div className="item__header__likes">
-                        <span>{likes}</span>
-                        <span>🚀</span>
-                    </div>
-                </div>
+                <Row>
+                    <Col sm={2}>
+                        <div
+                            className="item-image"
+                            style={{ backgroundImage: `url("${image}")` }}
+                        ></div>
+                    </Col>
+                    <Col className="item-content" sm={10}>
+                        <div className="item-content__header">
+                            <div className="item-content__header__type">{typeFormatted}</div>
+                            <div className="item-content__header__likes">
+                                <span>{likes}</span>
+                                <span>🚀</span>
+                            </div>
+                        </div>
 
-                <div className="item__content">
-                    <div className="item__content__name">{name}</div>
-                    <div className="item__content__resume">{resume}</div>
-                </div>
+                        <div className="item-content__content">
+                            <div className="item-content__content__name">{name}</div>
+                            <div className="item-content__content__resume">{resume}</div>
+                        </div>
 
-                <div className="item__footer">
-                    <div className="item__footer__status">{statusChip}</div>
-                    <Link to={`/repository/${id}`} className="item__footer__view-more">
-                        <Button
-                            color="secondary"
-                            variant="contained"
-                        >
-                            View more...
-                        </Button>
-                    </Link>
-                </div>
+                        <div className="item-content__footer">
+                            <div className="item-content__footer__status">{statusChip}</div>
+                            <Link to={`/repository/${id}`} className="item__footer__view-more">
+                                <Button color="secondary" variant="contained">
+                                    View more...
+                                </Button>
+                            </Link>
+                        </div>
+                    </Col>
+                </Row>
             </AppCard>
         </div>
     );

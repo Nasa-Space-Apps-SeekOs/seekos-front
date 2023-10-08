@@ -1,5 +1,14 @@
 @import "../../../../styles/colors.scss";
 
 #home-filters {
-    
+    .app-card {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .filters-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    }
 }
