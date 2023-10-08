@@ -6,6 +6,12 @@
         flex-direction: column;
         gap: 12px;
 
+        .app-card {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
         .body-editor-wrapper {
             border: 1px solid $color-neutral-2;
         }
