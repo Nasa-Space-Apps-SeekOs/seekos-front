@@ -1,4 +1,4 @@
-import { RepositoryPhase } from "../enums/repository-phase";
+import { RepositoryStatus } from "../enums/repository-status";
 import { RepositoryType } from "../enums/repository-type";
 
 export interface RepositoryDto {
@@ -7,5 +7,5 @@ export interface RepositoryDto {
     name: string;
     resume: string;
     body: string;
-    phases: RepositoryPhase;
+    status?: RepositoryStatus;
 }

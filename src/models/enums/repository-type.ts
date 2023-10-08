@@ -1,16 +1,18 @@
 import colors from '../../styles/colors.scss';
 
 export enum RepositoryType {
-    project = 'project',
-    idea = 'idea'
+    idea = 'idea',
+    project = 'project'
 }
 
-export const RepositoryTypeLabels = {
+export const RepositoryTypeList = () => Object.keys(RepositoryType);
+
+export const RepositoryTypeLabels: { [key: string]: string } = {
     [RepositoryType.project]: 'Project',
     [RepositoryType.idea]: 'Idea'
 };
 
-export const RepositoryTypeColors = {
+export const RepositoryTypeColors: { [key: string]: string } = {
     [RepositoryType.project]: colors['color-peterriver'],
     [RepositoryType.idea]: colors['color-amethyst']
 };

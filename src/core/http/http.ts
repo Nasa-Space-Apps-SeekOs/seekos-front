@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createStorage } from '../../core/storage';
+import { createStorage } from '../storage';
 
 const storage = createStorage();
 

@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Home from '../pages/Home';
 import RepositoryDetail from '../pages/RepositoryDetail';
 import PublicRoute from './PublicRoute';
+import RepositoryRegister from '../pages/RepositoryRegister';
 
 const Routes = () => {
     return (
@@ -35,11 +36,21 @@ const Routes = () => {
                         </PublicRoute>
                     }
                 />
+
                 <Route
                     path="/repository/:id"
                     element={
                         <PublicRoute>
-                            <RepositoryDetail/>
+                            <RepositoryDetail />
+                        </PublicRoute>
+                    }
+                />
+
+                <Route
+                    path="/repository-register"
+                    element={
+                        <PublicRoute>
+                            <RepositoryRegister />
                         </PublicRoute>
                     }
                 />

@@ -8,8 +8,8 @@ export default function ResultsList() {
     return (
         <div id="home-results-list">
             <div className="cards">
-                {repositories.map((r) => (
-                    <ResultRepository repository={r} />
+                {repositories.map((r, i) => (
+                    <ResultRepository key={i} repository={r} />
                 ))}
             </div>
         </div>

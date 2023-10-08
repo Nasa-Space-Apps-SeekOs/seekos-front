@@ -1,0 +1,13 @@
+@import "../../styles/colors.scss";
+
+#page-repository-register {
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .body-editor-wrapper {
+            border: 1px solid $color-neutral-2;
+        }
+    }
+}

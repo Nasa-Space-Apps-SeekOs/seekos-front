@@ -20,16 +20,8 @@ const Navbar = () => {
 
     const buttons = [
         {
-            path: '/home',
-            label: 'Home'
-        },
-        {
-            path: '/home',
-            label: 'Page 1'
-        },
-        {
-            path: '/home',
-            label: 'Page 2'
+            path: '/repository-register',
+            label: 'Create new repository'
         }
     ];
 

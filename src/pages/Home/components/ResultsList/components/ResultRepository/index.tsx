@@ -5,20 +5,17 @@ import {
     RepositoryTypeColors,
     RepositoryTypeLabels
 } from '../../../../../../models/enums/repository-type';
-import {
-    RepositoryPhaseColors,
-    RepositoryPhaseLabels
-} from '../../../../../../models/enums/repository-phase';
 import colors from '../../../../../../styles/colors.scss';
 import './index.scss';
 import { Link } from 'react-router-dom';
+import { RepositoryStatusColors, RepositoryStatusLabels } from '../../../../../../models/enums/repository-status';
 
 interface ResultRepositoryProps {
     repository: Repository;
 }
 
 export default function ResultRepository({ repository }: ResultRepositoryProps) {
-    const { name, resume, type, likes, phases, id } = repository;
+    const { name, resume, type, likes, status, id } = repository;
 
     const typeFormatted = (
         <span style={{ color: RepositoryTypeColors[type], fontWeight: 'bold' }}>
@@ -26,10 +23,10 @@ export default function ResultRepository({ repository }: ResultRepositoryProps) 
         </span>
     );
 
-    const phaseChip = (
+    const statusChip = (
         <Chip
-            label={RepositoryPhaseLabels[phases]}
-            style={{ color: colors['color-white'], backgroundColor: RepositoryPhaseColors[phases] }}
+            label={RepositoryStatusLabels[status]}
+            style={{ color: colors['color-white'], backgroundColor: RepositoryStatusColors[status] }}
         />
     );
 
@@ -50,7 +47,7 @@ export default function ResultRepository({ repository }: ResultRepositoryProps) 
                 </div>
 
                 <div className="item__footer">
-                    <div className="item__footer__phase">{phaseChip}</div>
+                    <div className="item__footer__status">{statusChip}</div>
                     <Link to={`/repository/${id}`}>
                         <Button
                             className="item__footer__view-more"
