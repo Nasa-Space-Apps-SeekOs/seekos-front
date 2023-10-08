@@ -10,10 +10,10 @@ interface PageProps {
 const Page = (props: PageProps) => {
     return (
         <Row id="repositor-detail-page">
-            <Col md={4} className='side-menu'>
+            <Col md={3} className='side-menu'>
                 {props.sideMenu}
             </Col>
-            <Col md={8} className='container'>
+            <Col md={9} className='container'>
                 <div className="page-content">{props.children}</div>
             </Col>
         </Row>

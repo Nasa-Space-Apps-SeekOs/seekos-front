@@ -1,14 +1,15 @@
-import { Repository } from '../models/api/repository';
-import { RepositoryDto } from '../models/dtos/repository.dto';
-import { RepositoryFilter } from '../models/filters/repository-search.filter';
 import { http } from '../core/http/http';
 import { URLS } from '../core/http/urls';
+import { Repository, RepositoryComment } from '../models/api/repository';
+import { RepositoryDto } from '../models/dtos/repository.dto';
+import { RepositoryFilter } from '../models/filters/repository-search.filter';
 
 export interface RepositoryService {
     search(filter: RepositoryFilter): Promise<Repository[]>;
     getById(id: number): Promise<Repository>;
     update(id: number, dto: RepositoryDto): Promise<Repository>;
     create(dto: RepositoryDto): Promise<Repository>;
+    getCommets(id: number): Promise<RepositoryComment[]>;
 }
 
 export const createRepositoryService = () => {
@@ -26,6 +27,12 @@ export const createRepositoryService = () => {
             .then((response) => response.data);
     };
 
+    const getCommets = (id: number): Promise<RepositoryComment[]> => {
+        return http()
+            .get<any>(URLS.api.repositories.getCommets(id))
+            .then((response) => response.data);
+    }
+
     const update = (id: number, dto: RepositoryDto): Promise<Repository> => {
         return http()
             .put<any>(URLS.api.repositories.update(id), dto)
@@ -42,6 +49,7 @@ export const createRepositoryService = () => {
         search,
         getById,
         update,
-        create
+        create,
+        getCommets
     };
 };

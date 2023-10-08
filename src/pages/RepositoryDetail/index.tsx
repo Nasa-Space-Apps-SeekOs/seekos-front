@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { Row } from 'react-grid-system';
 import { useParams } from 'react-router-dom';
 import AppCard from '../../components/AppCard';
-import { Repository } from '../../models/api/repository';
+import { useLoader } from '../../contexts/LoaderContext';
+import { Repository, RepositoryComment } from '../../models/api/repository';
 import { RepositoryService, createRepositoryService } from '../../services/repository.service';
 import InnerContent from './components/InnerContent';
 import Page from './components/Page/index';
@@ -11,9 +12,11 @@ import { CustomTabPanel, TabsValue, getTabProps } from './components/TabsUtils';
 import './index.scss';
 
 export default function RepositoryDetail() {
+    const loader = useLoader();
     const { id } = useParams<{ id: string }>();
     const repService = createRepositoryService();
     const [repository, setRepository] = useState<Repository>({} as Repository);
+    const [repositoryComments, setRepositoryComments] = useState<RepositoryComment[]>([] as RepositoryComment[]);
     const [tabValue, setTabValue] = useState<TabsValue>('information');
     const [tabsData, setTabsData] = useState<any>({
         information: null,
@@ -23,10 +26,12 @@ export default function RepositoryDetail() {
 
     const tabsColector = {
         information: (repService: RepositoryService, id: number) => {
-            return repService.getById(id).then(response => setRepository(response))
+            loader.show();
+            return repService.getById(id).then(response => setRepository(response)).finally(() => loader.hide());
         },
         comments: (repService: RepositoryService, id: number) => {
-            return {}
+            loader.show();
+            return repService.getCommets(id).then(response => setRepositoryComments(response)).finally(() => loader.hide());
         },
         colaborators: (repService: RepositoryService, id: number) => {
             return {}
@@ -34,9 +39,10 @@ export default function RepositoryDetail() {
     }
 
     useEffect(() => {
+        if (tabsData[tabValue]) return;
         setTabsData({
             ...tabsData, 
-            tabValue: tabsColector[tabValue](repService, Number(id))
+            [tabValue]: tabsColector[tabValue](repService, Number(id))
         })
     }, [tabValue]);
 
@@ -82,12 +88,27 @@ export default function RepositoryDetail() {
                                 </div>
                                 <div className="info-body">
                                     <div><b>Body</b></div>
-                                    <div dangerouslySetInnerHTML={{ __html: repository.body }} />
+                                    <div className="body-box" dangerouslySetInnerHTML={{ __html: repository.body }} />
                                 </div>
                             </div>
                         </CustomTabPanel>
                         <CustomTabPanel value={tabValue} index={'comments'}>
-                            Comentários
+                           <div>
+                           {repositoryComments.map((comment, index) => (
+                                <div className="comment-box" key={comment.id}>
+                                    <div className="comment-header">
+                                        <div className="comment-user">
+                                            <div className="comment-user-name">bgmartins</div>
+                                        </div>
+                                        <div className="comment-date">{comment.created_at}</div>
+                                    </div>
+                                    <div className="comment-body">
+                                        <div className="comment-body-text">{comment.comment}</div>
+                                    </div>
+                                </div>
+                            ))}
+                            
+                           </div>
                         </CustomTabPanel>
                         <CustomTabPanel value={tabValue} index={'colaborators'}>
                             Colaboradores

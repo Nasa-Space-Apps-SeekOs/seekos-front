@@ -12,7 +12,8 @@ export const URLS = {
             getById: (id: number) => `${API_BASE_URL}/repositories/${id}`,
             create: () => `${API_BASE_URL}/repositories`,
             update: (id: number) => `${API_BASE_URL}/repositories/${id}`,
-            delete: (id: number) => `${API_BASE_URL}/repositories/${id}`
+            delete: (id: number) => `${API_BASE_URL}/repositories/${id}`,
+            getCommets: (id: number) => `${API_BASE_URL}/repositories/${id}/comments/`
         }
     }
 };

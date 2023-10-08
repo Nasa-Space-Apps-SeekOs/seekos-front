@@ -37,10 +37,23 @@
         align-items: center;
         gap: 1rem;
 
+
         .info-body{
             display: flex;
             flex-direction: column;
             align-self: flex-start;
+            .body-box{
+                padding: 0 1rem .5rem 1rem;
+                border-radius: .5rem;
+                background-color: $color-neutral-1;
+            }
+        }
+        .info-resume{
+            display: flex;
+            flex-direction: column;
+            align-self: flex-start;
+            border-left: .2rem solid $color-primary;
+            padding-left: .5rem;
         }
         .minorInfo{
             display: flex;
