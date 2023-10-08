@@ -1,6 +1,6 @@
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import { Box, Tab, Tabs } from '@mui/material';
 import { useEffect, useState } from 'react';
+import { Row } from 'react-grid-system';
 import { useParams } from 'react-router-dom';
 import AppCard from '../../components/AppCard';
 import { Repository } from '../../models/api/repository';
@@ -48,9 +48,18 @@ export default function RepositoryDetail() {
     return (
         <div id="page-repository-detail">
 
-            <Page title={`${repository.name}`}>
+            <Page title={`${repository.name}`} sideMenu={
+                <div>
+                    <Row className="logo-div">
+                        <div className="repo-image" style={{backgroundImage: `url(https://www.cnet.com/a/img/resize/1fd603bee192c5ae0baad98958fc9f6937b9253d/hub/2023/07/28/c1518c71-4589-45e1-ba9b-4a696c1c3d8d/screen-shot-2023-07-28-at-1-30-28-pm.png?auto=webp&fit=crop&height=1200&width=1200)`}}
+                            />
+                    </Row>
+                    <div className='repo-mame'>{repository.name}</div>
+                    <div className="repo-details"><b>23 Colaboradores</b></div>
+                </div>
+            }>
                 <Box sx={{ width: '100%' }}>
-                <AppCard className="">
+                <AppCard className="app-card">
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <Tabs value={tabValue} onChange={handleChange}>
                             <Tab label="Information" {...getTabProps('information')} value={'information'}/>
@@ -61,16 +70,19 @@ export default function RepositoryDetail() {
 
                         <CustomTabPanel value={tabValue} index={'information'}>
                             <div className="info-content">
-                                <InnerContent title={'Body'} content={repository.body}/>
                                 <InnerContent title={'Resume'} content={repository.resume}/>
                                 <div className="minorInfo">
-                                        <RocketLaunchIcon/>{repository.likes}
+                                        🚀{repository.likes}
                                 </div>
                                 <div className="minorInfo">
-                                    <b>{'Status'}:</b> {repository.phases}
+                                    <b>Status:</b> {repository.phases}
                                 </div>
                                 <div className="minorInfo">
-                                    <b>{'Type'}</b>: {repository.type}
+                                    <b>Type</b>: {repository.type}
+                                </div>
+                                <div className="info-body">
+                                    <div><b>Body</b></div>
+                                    <div dangerouslySetInnerHTML={{ __html: repository.body }} />
                                 </div>
                             </div>
                         </CustomTabPanel>
