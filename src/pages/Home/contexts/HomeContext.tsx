@@ -28,6 +28,11 @@ export type SetFilterFormFieldFunction = (
     value: FilterFormType[keyof FilterFormType] | null
 ) => void;
 
+export interface HeaderImage {
+    label: string;
+    imgPath: string;
+}
+
 export interface IHomeProvider {
     repositories: Repository[];
     search: () => void;
@@ -36,6 +41,7 @@ export interface IHomeProvider {
     repositoryStatus: string[];
     setFilterFormField: SetFilterFormFieldFunction;
     filterForm: FilterFormType;
+    headerImages: HeaderImage[];
 }
 
 interface HomeProviderProps {
@@ -60,10 +66,35 @@ const HomeProvider = (props: HomeProviderProps) => {
 
     const [filterForm, setFilterForm] = useState<FilterFormType>({});
 
+    const [headerImages, setHeaderImages] = useState<HeaderImage[]>([
+        {
+            label: 'Seekos',
+            imgPath: 'https://i.imgur.com/mwMp4X1.jpg'
+        }
+    ]);
+
+    const [isFirstSearch, setIsFirstSearch] = useState(true);
+
     useEffect(() => {
         getKeys();
         search();
     }, []);
+
+    useEffect(() => {
+        if (isFirstSearch && repositories.length) {
+            console.log({isFirstSearch, hhh:repositories.map((r) => ({
+                label: r.name,
+                imgPath: r.url_image || require('../../../assets/repository-default.jpg')
+            })) })
+            setHeaderImages(
+                repositories.map((r) => ({
+                    label: r.name,
+                    imgPath: r.url_image || require('../../../assets/repository-default.jpg')
+                }))
+            );
+            setIsFirstSearch(false);
+        }
+    }, [repositories]);
 
     const setFilterFormField = (
         field: keyof FilterFormType,
@@ -96,9 +127,10 @@ const HomeProvider = (props: HomeProviderProps) => {
             repositoryTypes,
             repositoryStatus,
             setFilterFormField,
-            filterForm
+            filterForm,
+            headerImages
         }),
-        [repositories, tags, repositoryTypes, repositoryStatus, filterForm]
+        [repositories, tags, repositoryTypes, repositoryStatus, filterForm, headerImages]
     );
 
     return <HomeContext.Provider value={returnValue}>{props.children}</HomeContext.Provider>;

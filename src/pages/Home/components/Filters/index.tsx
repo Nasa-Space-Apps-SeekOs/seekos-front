@@ -25,13 +25,15 @@ export default function Filters() {
     const { tags, repositoryTypes, repositoryStatus, filterForm, setFilterFormField, search } =
         useHomeContext();
 
+    const isMobile = window.innerWidth < 768;
+
     return (
         <div id="home-filters">
             <AppCard>
-                <Accordion>
+                <Accordion defaultExpanded={!isMobile}>
                     <AccordionSummary
                         expandIcon={<IconExpandMore />}
-                        aria-controls="panel1a-content"
+                        aria-controls="filters-content"
                         id="filter-header"
                     >
                         <Typography>Filters</Typography>

@@ -45,13 +45,13 @@ export default function ResultRepository({ repository }: ResultRepositoryProps) 
         <div className="result-repository">
             <AppCard className="item">
                 <Row>
-                    <Col sm={2}>
+                    <Col sm={12} md={3}>
                         <div
                             className="item-image"
                             style={{ backgroundImage: `url("${image}")` }}
                         ></div>
                     </Col>
-                    <Col className="item-content" sm={10}>
+                    <Col className="item-content" sm={12} md={9}>
                         <div className="item-content__header">
                             <div className="item-content__header__type">{typeFormatted}</div>
                             <div className="item-content__header__likes">
