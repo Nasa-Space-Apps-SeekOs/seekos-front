@@ -66,9 +66,9 @@ const Navbar = () => {
                         ))}
                     </div>
                     <div className="right">
-                        <Button onClick={handleLogout} className="button-logout" variant="text">
+                        {/* <Button onClick={handleLogout} className="button-logout" variant="text">
                             Logout
-                        </Button>
+                        </Button> */}
                     </div>
                 </div>
             </nav>

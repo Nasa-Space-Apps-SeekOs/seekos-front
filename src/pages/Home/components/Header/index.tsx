@@ -6,6 +6,7 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import { Box, Button, MobileStepper, Paper, Typography, useTheme } from '@mui/material';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 import { useHomeContext } from '../../contexts/HomeContext';
+import { Link } from 'react-router-dom';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -62,7 +63,16 @@ export default function Header() {
                             bgcolor: 'background.default'
                         }}
                     >
-                        <Typography>{headerImages[activeStep]?.label}</Typography>
+                        {headerImages[activeStep].link ? (
+                            <Link
+                                to={headerImages[activeStep].link!}
+                                style={{ textDecoration: 'none' }}
+                            >
+                                <Typography>{headerImages[activeStep]?.label}</Typography>
+                            </Link>
+                        ) : (
+                            <Typography>{headerImages[activeStep].link}</Typography>
+                        )}
                     </Paper>
                     <AutoPlaySwipeableViews
                         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}

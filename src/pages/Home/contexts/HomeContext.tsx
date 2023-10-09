@@ -31,6 +31,7 @@ export type SetFilterFormFieldFunction = (
 export interface HeaderImage {
     label: string;
     imgPath: string;
+    link?: string;
 }
 
 export interface IHomeProvider {
@@ -82,15 +83,21 @@ const HomeProvider = (props: HomeProviderProps) => {
 
     useEffect(() => {
         if (isFirstSearch && repositories.length) {
-            console.log({isFirstSearch, hhh:repositories.map((r) => ({
-                label: r.name,
-                imgPath: r.url_image || require('../../../assets/repository-default.jpg')
-            })) })
-            setHeaderImages(
-                repositories.map((r) => ({
+            console.log({
+                isFirstSearch,
+                hhh: repositories.map((r) => ({
                     label: r.name,
                     imgPath: r.url_image || require('../../../assets/repository-default.jpg')
                 }))
+            });
+            setHeaderImages(
+                repositories
+                    .filter((r) => r.url_image)
+                    .map((r) => ({
+                        label: r.name,
+                        imgPath: r.url_image!,
+                        link: `/repository/${r.id}`
+                    }))
             );
             setIsFirstSearch(false);
         }

@@ -6,17 +6,13 @@ import AppCard from '../../components/AppCard';
 import { useLoader } from '../../contexts/LoaderContext';
 import { Repository } from '../../models/api/repository';
 import { RepositoryColaborator } from '../../models/api/repository-colaborator';
-import { RepositoryComment } from '../../models/api/repository-comment';
 import { RepositoryService, createRepositoryService } from '../../services/repository.service';
 import Comment from './components/Comment';
 import Member from './components/Member';
-
 import InnerContent from './components/InnerContent';
 import Page from './components/Page/index';
 import { CustomTabPanel, TabsValue, getTabProps } from './components/TabsUtils';
 import './index.scss';
-<<<<<<< Updated upstream
-=======
 import { RepositoryComment } from '../../models/api/repository-comment';
 import { Edit as IconEdit } from '@mui/icons-material';
 import {
@@ -24,7 +20,6 @@ import {
     RepositoryStatusLabels
 } from '../../models/enums/repository-status';
 import { RepositoryTypeColors, RepositoryTypeLabels } from '../../models/enums/repository-type';
->>>>>>> Stashed changes
 
 export default function RepositoryDetail() {
     const loader = useLoader();
@@ -34,7 +29,9 @@ export default function RepositoryDetail() {
     const [repositoryComments, setRepositoryComments] = useState<RepositoryComment[]>(
         [] as RepositoryComment[]
     );
-    const [repositoryColaborators, setRepositoryColaborators] = useState<RepositoryColaborator[]>([] as RepositoryColaborator[]);
+    const [repositoryColaborators, setRepositoryColaborators] = useState<RepositoryColaborator[]>(
+        [] as RepositoryColaborator[]
+    );
     const [tabValue, setTabValue] = useState<TabsValue>('information');
     const [tabsData, setTabsData] = useState<any>({
         information: null,
@@ -174,15 +171,23 @@ export default function RepositoryDetail() {
                         </CustomTabPanel>
                         <CustomTabPanel value={tabValue} index={'comments'}>
                             <div>
-                                {repositoryComments.length > 0 ? repositoryComments.map((comment, index) => (
-                                    <Comment {...comment} key={comment.id} />
-                                )) : <div className="no-comments">No comments</div>}
+                                {repositoryComments.length > 0 ? (
+                                    repositoryComments.map((comment, index) => (
+                                        <Comment {...comment} key={comment.id} />
+                                    ))
+                                ) : (
+                                    <div className="no-comments">No comments</div>
+                                )}
                             </div>
                         </CustomTabPanel>
                         <CustomTabPanel value={tabValue} index={'colaborators'}>
-                                {repositoryColaborators.length > 0 ? repositoryColaborators.map((colaborator, index) => (
+                            {repositoryColaborators.length > 0 ? (
+                                repositoryColaborators.map((colaborator, index) => (
                                     <Member {...colaborator} key={colaborator.id} />
-                                )) : <div className="no-comments">No colaborators</div>}
+                                ))
+                            ) : (
+                                <div className="no-comments">No colaborators</div>
+                            )}
                         </CustomTabPanel>
                     </AppCard>
                 </Box>

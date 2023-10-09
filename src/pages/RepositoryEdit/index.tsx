@@ -72,6 +72,10 @@ const RepositoryEdit = () => {
         if (repository) setFormValues();
     }, [repository]);
 
+    const titleText = id ? 'Edit Repository' : 'New Repository';
+    const buttonSaveText = id ? 'Save' : 'Create';
+    const successMessage = id ? 'Repository saved!' : 'Repository created!';
+
     const setFormValues = () => {
         if (repository) {
             const { name, type, status, resume, body: bodyStr, url_image } = repository;
@@ -142,7 +146,7 @@ const RepositoryEdit = () => {
         loader.show();
         savePromise
             .then((response) => {
-                toast.show('Repository created!', 'success');
+                toast.show(successMessage, 'success');
                 navigate(`/repository/${response.id}`);
             })
             .catch(() => {
@@ -150,9 +154,6 @@ const RepositoryEdit = () => {
             })
             .finally(() => loader.hide());
     };
-
-    const titleText = id ? 'Edit Repository' : 'New Repository';
-    const buttonSaveText = id ? 'Save' : 'Create';
 
     return (
         <div id="page-repository-edit">
@@ -201,7 +202,9 @@ const RepositoryEdit = () => {
                             onChange={(e) => setFormField('url_image', e.target.value)}
                         />
 
-                        {form.url_image && <img className='form-image-preview' src={form.url_image} />}
+                        {form.url_image && (
+                            <img className="form-image-preview" src={form.url_image} />
+                        )}
 
                         {isProject && (
                             <FormControl>
