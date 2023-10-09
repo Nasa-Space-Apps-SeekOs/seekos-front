@@ -20,16 +20,8 @@ const Navbar = () => {
 
     const buttons = [
         {
-            path: '/home',
-            label: 'Home'
-        },
-        {
-            path: '/home',
-            label: 'Page 1'
-        },
-        {
-            path: '/home',
-            label: 'Page 2'
+            path: '/repository-register',
+            label: 'Create new repository'
         }
     ];
 
@@ -48,10 +40,15 @@ const Navbar = () => {
 
     const buttonsToShow = buttons.filter(Boolean) as { path: string; label: string }[];
 
+    const logo = require('../../assets/logo-seekos.png');
+
     return canShow ? (
         <div id="navbar">
             <nav>
-                <span className="nav-title">SeekOs</span>
+                <Link to="/" className="nav-title">
+                    <img src={logo} alt="Logo" />
+                    <span>SeekOs</span>
+                </Link>
 
                 <div className="content">
                     <div className="buttons">
@@ -69,9 +66,9 @@ const Navbar = () => {
                         ))}
                     </div>
                     <div className="right">
-                        <Button onClick={handleLogout} className="button-logout" variant="text">
+                        {/* <Button onClick={handleLogout} className="button-logout" variant="text">
                             Logout
-                        </Button>
+                        </Button> */}
                     </div>
                 </div>
             </nav>

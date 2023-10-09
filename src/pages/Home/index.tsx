@@ -14,10 +14,10 @@ export default function Home() {
                 <div id="page-home">
                     <Header />
                     <Row>
-                        <Col md={3}>
+                        <Col md={4} lg={3}>
                             <Filters />
                         </Col>
-                        <Col md={9}>
+                        <Col md={8} lg={9}>
                             <div className="home-search-results">
                                 <Search />
                                 <ResultsList />

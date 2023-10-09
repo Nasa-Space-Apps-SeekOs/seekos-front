@@ -9,7 +9,6 @@ import Routes from './routes/Routes';
 import { theme } from './styles/mui-theme';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import OperatorProvider from './contexts/OperatorContext';
 import PromptModalProvider from './contexts/PromptModalContext';
 
 const App = () => {
@@ -24,8 +23,7 @@ const App = () => {
                     { Component: ToastProvider },
                     { Component: AlertProvider },
                     { Component: PromptModalProvider },
-                    { Component: ModalProvider },
-                    { Component: OperatorProvider }
+                    { Component: ModalProvider }
                 ]}
             >
                 <Routes />

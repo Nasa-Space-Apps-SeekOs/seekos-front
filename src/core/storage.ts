@@ -1,10 +1,8 @@
-import { Operator } from '../models/api/operator';
 import { User } from '../models/api/user';
 
 export interface AppDataStorage {
     user: User;
     token: string;
-    lastOperator: Operator;
     lastManualPrinterAddress: string;
 }
 

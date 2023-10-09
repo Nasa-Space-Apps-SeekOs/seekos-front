@@ -1,0 +1,43 @@
+@import "../../../../styles/colors.scss";
+
+
+.comment-box{
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+
+    .image-user{
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 5rem;
+        border: 0.1rem solid $color-highlight;
+        background-color: $color-neutral-1;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .comment-body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .comment-user{
+            display: flex;
+            flex: row;
+            align-items: center;
+            font-size: 0.75rem;
+            gap: 0.5rem;
+
+            .comment-date{
+                align-self: flex-end;
+                align-self: center;
+                color: $color-neutral-2;
+            }
+        }
+        .comment-body-text{
+            align-self: flex-start;
+            font-size: 1rem;
+        }
+    }
+}

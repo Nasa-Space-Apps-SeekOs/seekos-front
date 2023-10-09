@@ -1,4 +1,4 @@
-import { RepositoryPhase } from '../enums/repository-phase';
+import { RepositoryStatus } from '../enums/repository-status';
 import { RepositoryType } from '../enums/repository-type';
 
 export interface Repository {
@@ -9,5 +9,7 @@ export interface Repository {
     body: string;
     likes: number;
     ranking: number;
-    phases: RepositoryPhase;
+    status: RepositoryStatus | undefined;
+    url_image: string | undefined;
+    url_project: string | undefined;
 }
